@@ -17,3 +17,19 @@ export class ObtainPeopleDto {
     });
   }
 }
+
+export class LoginDto {
+  @Expose()
+  @IsNotEmpty()
+  email: string;
+
+  @Expose()
+  @IsNotEmpty()
+  password: string;
+
+  static fromUser(people: People): LoginDto {
+    return plainToClass(LoginDto, people, {
+      excludeExtraneousValues: true,
+    });
+  }
+}
