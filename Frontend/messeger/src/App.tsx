@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from "react-query";
 import "./App.css";
 import Conversations from "./components/Conversations";
 import Sidebar from "./components/Generic/Sidebar";
@@ -10,9 +11,10 @@ import useAuth from "./hooks/useAuth";
 
 function App() {
   const { auth } = useAuth();
+  const queryClient = new QueryClient();
 
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <ToasterContext></ToasterContext>
       {auth ? (
         <NavigationProvider>
@@ -22,14 +24,14 @@ function App() {
               <Conversations />
             </Route>
             <Route path="/users">
-              <Users />
+              <Users></Users>
             </Route>
           </div>
         </NavigationProvider>
       ) : (
         <Login />
       )}
-    </div>
+    </QueryClientProvider>
   );
 }
 

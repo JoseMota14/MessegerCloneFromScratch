@@ -29,7 +29,7 @@ export class PeopleService {
       },
       where: {
         NOT: {
-          email: email,
+          OR: [{ email: email }, { name: email }],
         },
       },
     });

@@ -12,7 +12,7 @@ export interface iNavigationProvider {
 }
 
 function NavigationProvider({ children }: iNavigationProvider) {
-  const [currentPath, setCurrentPath] = useState<string>({} as string);
+  const [currentPath, setCurrentPath] = useState<string>("");
 
   const navigate = (to: string) => {
     window.history.pushState({}, "", to);
